@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Дневник Таролога — изучайте карты Таро, ведите дневник раскладов и запоминайте значения карт с помощью флеш-карт">
+    <title>Дневник Таролога ✦ Изучение и практика Таро</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/overrides.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">✦</span>
+                <h1 class="logo-text">Таро</h1>
+                <span class="logo-sub">дневник</span>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="#home" class="nav-link active" data-page="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Главная</span>
+                </a>
+            </li>
+            <li>
+                <a href="#library" class="nav-link" data-page="library">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">Библиотека</span>
+                </a>
+            </li>
+            <li>
+                <a href="#diary" class="nav-link" data-page="diary">
+                    <span class="nav-icon">📖</span>
+                    <span class="nav-text">Дневник</span>
+                </a>
+            </li>
+            <li>
+                <a href="#study" class="nav-link" data-page="study">
+                    <span class="nav-icon">🧠</span>
+                    <span class="nav-text">Изучение</span>
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <div class="stats-mini">
+                <span id="total-entries">0</span> записей
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="#home" class="mobile-nav-link active" data-page="home">
+            <span>🏠</span><small>Главная</small>
+        </a>
+        <a href="#library" class="mobile-nav-link" data-page="library">
+            <span>📚</span><small>Карты</small>
+        </a>
+        <a href="#diary" class="mobile-nav-link" data-page="diary">
+            <span>📖</span><small>Дневник</small>
+        </a>
+        <a href="#study" class="mobile-nav-link" data-page="study">
+            <span>🧠</span><small>Учить</small>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ==================== HOME PAGE ==================== -->
+        <section class="page active" id="page-home">
+            <div class="page-header">
+                <h2 class="page-title">Добро пожаловать</h2>
+                <p class="page-subtitle">Ваш мистический дневник ждёт</p>
+            </div>
+
+            <!-- Card of the Day -->
+            <div class="card-of-day" id="cardOfDay">
+                <div class="card-of-day-header">
+                    <h3>✦ Карта дня ✦</h3>
+                    <button class="btn btn-sm btn-secondary" id="newCardOfDay" title="Вытянуть новую карту">
+                        🔄 Новая карта
+                    </button>
+                </div>
+                <div class="card-of-day-content">
+                    <div class="card-of-day-visual" id="codVisual">
+                        <div class="card-of-day-symbol" id="codSymbol">✦</div>
+                        <div class="card-of-day-name" id="codName">Загрузка...</div>
+                    </div>
+                    <div class="card-of-day-info">
+                        <div class="cod-keywords" id="codKeywords"></div>
+                        <p class="cod-meaning" id="codMeaning"></p>
+                        <p class="cod-advice" id="codAdvice"></p>
+                        <button class="btn btn-outline" id="codDetails">Подробнее о карте →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value" id="statTotalCards">78</div>
+                    <div class="stat-label">карт в библиотеке</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📖</div>
+                    <div class="stat-value" id="statDiaryEntries">0</div>
+                    <div class="stat-label">записей в дневнике</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🧠</div>
+                    <div class="stat-value" id="statStudied">0</div>
+                    <div class="stat-label">карт изучено</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-value" id="statStreak">0</div>
+                    <div class="stat-label">дней подряд</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="quick-action-btn" data-action="new-entry">
+                    <span class="qa-icon">✍️</span>
+                    <span class="qa-text">Новая запись</span>
+                </button>
+                <button class="quick-action-btn" data-action="study">
+                    <span class="qa-icon">🎴</span>
+                    <span class="qa-text">Начать изучение</span>
+                </button>
+                <button class="quick-action-btn" data-action="library">
+                    <span class="qa-icon">🔍</span>
+                    <span class="qa-text">Найти карту</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- ==================== LIBRARY PAGE ==================== -->
+        <section class="page" id="page-library">
+            <div class="page-header">
+                <h2 class="page-title">Библиотека карт</h2>
+                <p class="page-subtitle">78 карт Таро с описаниями</p>
+            </div>
+
+            <div class="library-controls">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Поиск по названию или ключевым словам..." autocomplete="off">
+                    <button class="search-clear" id="searchClear" style="display:none">✕</button>
+                </div>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-filter="all">Все</button>
+                    <button class="filter-pill" data-filter="major">Старшие</button>
+                    <button class="filter-pill" data-filter="wands">🔥 Жезлы</button>
+                    <button class="filter-pill" data-filter="cups">💧 Кубки</button>
+                    <button class="filter-pill" data-filter="swords">⚔️ Мечи</button>
+                    <button class="filter-pill" data-filter="pentacles">💰 Пентакли</button>
+                </div>
+            </div>
+
+            <div class="cards-count" id="cardsCount">Показано: 78 карт</div>
+
+            <div class="card-grid" id="cardGrid">
+                <!-- Cards populated by JS -->
+            </div>
+        </section>
+
+        <!-- ==================== CARD DETAIL PAGE ==================== -->
+        <section class="page" id="page-card-detail">
+            <div class="page-header">
+                <button class="btn btn-back" id="backToLibrary">← Назад к библиотеке</button>
+            </div>
+
+            <div class="card-detail" id="cardDetail">
+                <div class="card-detail-hero">
+                    <div class="card-detail-visual">
+                        <div class="card-detail-symbol" id="detailSymbol">✦</div>
+                        <div class="card-detail-number" id="detailNumber"></div>
+                    </div>
+                    <div class="card-detail-header">
+                        <h2 class="card-detail-name" id="detailName"></h2>
+                        <div class="card-detail-meta">
+                            <span class="detail-arcana" id="detailArcana"></span>
+                            <span class="detail-element" id="detailElement"></span>
+                        </div>
+                        <div class="card-detail-keywords" id="detailKeywords"></div>
+                    </div>
+                </div>
+
+                <div class="card-detail-body">
+                    <div class="meaning-section">
+                        <div class="meaning-block upright">
+                            <h3>☀️ Прямое положение</h3>
+                            <p id="detailUpright"></p>
+                        </div>
+                        <div class="meaning-block reversed">
+                            <h3>🔄 Перевёрнутое положение</h3>
+                            <p id="detailReversed"></p>
+                        </div>
+                    </div>
+                    <div class="advice-section">
+                        <h3>💡 Совет карты</h3>
+                        <p id="detailAdvice" class="advice-text"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== DIARY PAGE ==================== -->
+        <section class="page" id="page-diary">
+            <div class="page-header">
+                <h2 class="page-title">Дневник раскладов</h2>
+                <p class="page-subtitle">Записывайте свои расклады и наблюдения</p>
+                <button class="btn btn-primary" id="newEntryBtn">✍️ Новая запись</button>
+            </div>
+
+            <div class="diary-list" id="diaryList">
+                <!-- Entries populated by JS -->
+            </div>
+
+            <div class="empty-state" id="diaryEmpty" style="display:none">
+                <div class="empty-icon">📖</div>
+                <h3>Дневник пуст</h3>
+                <p>Начните записывать свои расклады, чтобы отслеживать прогресс</p>
+                <button class="btn btn-primary" id="emptyNewEntry">✍️ Создать первую запись</button>
+            </div>
+        </section>
+
+        <!-- ==================== NEW/EDIT ENTRY PAGE ==================== -->
+        <section class="page" id="page-new-entry">
+            <div class="page-header">
+                <button class="btn btn-back" id="backToDiary">← Назад к дневнику</button>
+                <h2 class="page-title" id="entryFormTitle">Новая запись</h2>
+            </div>
+
+            <form class="entry-form" id="entryForm">
+                <input type="hidden" id="entryId">
+
+                <div class="form-group">
+                    <label for="entryDate">📅 Дата</label>
+                    <input type="date" id="entryDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="entrySpreadType">🃏 Тип расклада</label>
+                    <select id="entrySpreadType">
+                        <option value="">Выберите тип...</option>
+                        <option value="daily">Карта дня</option>
+                        <option value="three">Три карты (Прошлое / Настоящее / Будущее)</option>
+                        <option value="celtic">Кельтский крест</option>
+                        <option value="love">Расклад на любовь</option>
+                        <option value="career">Расклад на карьеру</option>
+                        <option value="custom">Другой</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryQuestion">❓ Вопрос</label>
+                    <input type="text" id="entryQuestion" placeholder="Какой вопрос вы задали картам?">
+                </div>
+
+                <div class="form-group">
+                    <label>🎴 Выпавшие карты</label>
+                    <div class="selected-cards" id="selectedCards">
+                        <!-- Selected cards appear here -->
+                    </div>
+                    <button type="button" class="btn btn-secondary" id="addCardBtn">+ Добавить карту</button>
+                </div>
+
+                <!-- Card Selection Modal -->
+                <div class="card-select-modal" id="cardSelectModal" style="display:none">
+                    <div class="card-select-content">
+                        <div class="card-select-header">
+                            <h3>Выберите карту</h3>
+                            <button type="button" class="btn-close" id="closeCardSelect">✕</button>
+                        </div>
+                        <input type="text" class="card-select-search" id="cardSelectSearch" placeholder="Поиск карты...">
+                        <div class="card-select-list" id="cardSelectList">
+                            <!-- Cards listed here -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryInterpretation">📝 Интерпретация</label>
+                    <textarea id="entryInterpretation" rows="5" placeholder="Ваше толкование расклада..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryNotes">💭 Заметки</label>
+                    <textarea id="entryNotes" rows="3" placeholder="Дополнительные мысли, ощущения..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="entryMood">🌙 Настроение</label>
+                    <div class="mood-selector">
+                        <button type="button" class="mood-btn" data-mood="great">😊</button>
+                        <button type="button" class="mood-btn" data-mood="good">🙂</button>
+                        <button type="button" class="mood-btn" data-mood="neutral">😐</button>
+                        <button type="button" class="mood-btn" data-mood="bad">😔</button>
+                        <button type="button" class="mood-btn" data-mood="awful">😢</button>
+                    </div>
+                    <input type="hidden" id="entryMood" value="">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">💾 Сохранить запись</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEntry">Отмена</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- ==================== DIARY ENTRY VIEW PAGE ==================== -->
+        <section class="page" id="page-view-entry">
+            <div class="page-header">
+                <button class="btn btn-back" id="backToDiaryFromView">← Назад к дневнику</button>
+            </div>
+            <div class="entry-view" id="entryView">
+                <!-- Entry content populated by JS -->
+            </div>
+        </section>
+
+        <!-- ==================== STUDY PAGE ==================== -->
+        <section class="page" id="page-study">
+            <div class="page-header">
+                <h2 class="page-title">Режим изучения</h2>
+                <p class="page-subtitle">Запоминайте значения карт</p>
+            </div>
+
+            <!-- Study Mode Selection -->
+            <div class="study-modes" id="studyModes">
+                <div class="study-mode-card" data-mode="keywords">
+                    <div class="study-mode-icon">🎴</div>
+                    <h3>Угадай значение</h3>
+                    <p>Вам показывается карта — вспомните ключевые слова</p>
+                    <button class="btn btn-primary">Начать</button>
+                </div>
+                <div class="study-mode-card" data-mode="card">
+                    <div class="study-mode-icon">🔮</div>
+                    <h3>Угадай карту</h3>
+                    <p>Вам показываются ключевые слова — угадайте карту</p>
+                    <button class="btn btn-primary">Начать</button>
+                </div>
+                <div class="study-mode-card" data-mode="meaning">
+                    <div class="study-mode-icon">📖</div>
+                    <h3>Полное значение</h3>
+                    <p>Изучайте полные описания карт по одной</p>
+                    <button class="btn btn-primary">Начать</button>
+                </div>
+            </div>
+
+            <!-- Study Filter -->
+            <div class="study-filter" id="studyFilter" style="display:none">
+                <h3>Какие карты изучать?</h3>
+                <div class="filter-pills">
+                    <button class="filter-pill active" data-study-filter="all">Все 78</button>
+                    <button class="filter-pill" data-study-filter="major">Старшие Арканы</button>
+                    <button class="filter-pill" data-study-filter="minor">Младшие Арканы</button>
+                    <button class="filter-pill" data-study-filter="wands">Жезлы</button>
+                    <button class="filter-pill" data-study-filter="cups">Кубки</button>
+                    <button class="filter-pill" data-study-filter="swords">Мечи</button>
+                    <button class="filter-pill" data-study-filter="pentacles">Пентакли</button>
+                </div>
+                <button class="btn btn-primary" id="startStudy">▶️ Начать изучение</button>
+                <button class="btn btn-secondary" id="cancelStudy">Отмена</button>
+            </div>
+
+            <!-- Flashcard Area -->
+            <div class="study-area" id="studyArea" style="display:none">
+                <div class="study-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="studyProgressFill"></div>
+                    </div>
+                    <span class="progress-text" id="studyProgressText">1 / 78</span>
+                </div>
+
+                <div class="flashcard-container">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner" id="flashcardInner">
+                            <div class="flashcard-front" id="flashcardFront">
+                                <!-- Front content -->
+                            </div>
+                            <div class="flashcard-back" id="flashcardBack">
+                                <!-- Back content -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="study-hint" id="studyHint">Нажмите на карту, чтобы перевернуть</div>
+
+                <div class="study-controls">
+                    <button class="btn btn-secondary" id="studyPrev" title="Предыдущая">← Назад</button>
+                    <button class="btn btn-accent" id="studyFlip" title="Перевернуть">🔄 Перевернуть</button>
+                    <button class="btn btn-primary" id="studyNext" title="Следующая">Далее →</button>
+                </div>
+
+                <div class="study-actions">
+                    <button class="btn btn-sm btn-secondary" id="studyShuffle">🔀 Перемешать</button>
+                    <button class="btn btn-sm btn-danger" id="studyStop">⏹ Завершить</button>
+                </div>
+            </div>
+
+            <!-- Study Results -->
+            <div class="study-results" id="studyResults" style="display:none">
+                <div class="results-icon">🎉</div>
+                <h3>Сессия завершена!</h3>
+                <p class="results-stats" id="resultsStats"></p>
+                <div class="results-actions">
+                    <button class="btn btn-primary" id="studyAgain">🔄 Ещё раз</button>
+                    <button class="btn btn-secondary" id="studyBack">← К выбору режима</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✅</span>
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <!-- Confirm Modal -->
+    <div class="modal-overlay" id="confirmModal" style="display:none">
+        <div class="modal">
+            <h3 id="confirmTitle">Подтверждение</h3>
+            <p id="confirmMessage">Вы уверены?</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmYes">Да</button>
+                <button class="btn btn-secondary" id="confirmNo">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/cards-data.js"></script>
+    <script src="js/diary.js"></script>
+    <script src="js/study.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
